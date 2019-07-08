@@ -14,6 +14,10 @@ function displayDot() {
   }
 }
 
+function isInt(n) {
+   return n % 1 === 0;
+}
+
 var num1;
 var op;
 
@@ -48,13 +52,32 @@ function divide() {
 function equal() {
   var ipText = document.getElementById("ip-text");
   var num2 = ipText.value;
+  var final;
   if (op=="+") {
-    ipText.value = parseInt(num1) + parseInt(num2);
+    final = Number(num1) + Number(num2);
   }else if (op=="-") {
-    ipText.value = parseInt(num1) - parseInt(num2);
+    final = Number(num1) - Number(num2);
   }else if (op=="*") {
-    ipText.value = parseInt(num1) * parseInt(num2);
+    final = Number(num1) * Number(num2);
   }else {
-    ipText.value = parseInt(num1) / parseInt(num2);
+    final = Number(num1) / Number(num2);
   }
+
+  if (isNaN(final)) {
+    ipText.value = "";
+  }else {
+    ipText.value = final;
+  }
+}
+
+function del() {
+  var ipText = document.getElementById("ip-text");
+  var ipVal = ipText.value;
+  ipVal = ipVal.substring(0, ipVal.length - 1);
+  ipText.value = ipVal;
+}
+
+function ac() {
+  var ipText = document.getElementById("ip-text");
+  ipText.value = "";
 }
